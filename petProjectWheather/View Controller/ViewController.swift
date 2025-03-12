@@ -1,4 +1,3 @@
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -94,10 +93,32 @@ class ViewController: UIViewController {
             return
         }
         
-        // Передаем текущий экземпляр ViewController в SearchCity
         print("Валидация пройдена")
-        let searchCity = SearchCity(viewController: self)
-        searchCity.searchCity()
+        
+        // Получаем данные о погоде
+        WheatherService().fetchWheather(for: city) { [weak self] response in
+            DispatchQueue.main.async {
+                if let response = response {
+                    // После получения данных, переходим на второй экран
+                    let nextVC = WheatherController()
+                    nextVC.cityName = city // передаем город
+                    nextVC.wheather = response // передаем данные о погоде
+                    
+                    // Сохраняем город для будущих входов
+                    UserDefaults.standard.set(city, forKey: "selectedCity")
+                    print("City saved: \(city)")
+                    
+                    // Переходим на экран погоды
+                    self?.navigationController?.pushViewController(nextVC, animated: true)
+                    print("Город найден, сохранен и на него перешли")
+                    print("Передали данные: Город - \(city), Погода - \(String(describing: response))")
+                } else {
+                    let alert = SearchAlert()
+                    alert.showAlert(message: "City not found")
+                    print("Город не найден")
+                }
+            }
+        }
     }
     
     // MARK: - Указываем расположение элементов на экране

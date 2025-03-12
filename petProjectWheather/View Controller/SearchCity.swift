@@ -26,11 +26,21 @@ class SearchCity {
                     nextVC.cityName = city // передаем город
                     nextVC.wheather = response // передаем данные о погоде
 
-                    // Используем navigationController текущего ViewController
-                    if let navigationController = self?.viewController?.navigationController {
+                    // Получаем window и root navigation controller
+                    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let window = windowScene.windows.first,
+                       let navigationController = window.rootViewController as? UINavigationController {
+                        
+                        // Сохраняем город для будущих входов
+                        UserDefaults.standard.set(city, forKey: "selectedCity")
+                        print("City saved: \(city)")
+                        
+                        // Переходим на экран погоды
                         navigationController.pushViewController(nextVC, animated: true)
+                        print("Город найден, сохранен и на него перешли")
+                        print("Передали данные: Город - \(city), Погода - \(String(describing: response))")
                     } else {
-                        print("Нет навигационного контроллера!")
+                        print("Ошибка: Не удалось получить навигационный контроллер")
                     }
                     print("Передали данные: Город - \(city), Погода - \(String(describing: response))")
 
