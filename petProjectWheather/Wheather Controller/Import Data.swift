@@ -1,10 +1,3 @@
-//
-//  Import Data.swift
-//  petProjectWheather
-//
-//  Created by Геннадий on 24.02.2025.
-//
-
 import Foundation
 
 class ImportData {

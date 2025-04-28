@@ -31,46 +31,46 @@ class UpdateUI {
         wheatherController.sunsetBlock.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         // Добавление значений на экран
-        wheatherController.cityLabel.text = "\(weatherData.name)"
+        wheatherController.mainLabels.cityLabel.text = "\(weatherData.name)"
         
         let roundedTemp = Int(round(weatherData.main.temp))
-        wheatherController.temperatureLabel.text = "\(roundedTemp)°C"
+        wheatherController.mainLabels.temperatureLabel.text = "\(roundedTemp)°C"
         
-        wheatherController.descriptionLabel.text = "\(weatherData.weather.first?.description ?? "")"
+        wheatherController.mainLabels.descriptionLabel.text = "\(weatherData.weather.first?.description ?? "")"
         
-        wheatherController.clouds.text = "  Облачность\n"
-        wheatherController.cloudsValue.text = "  \(weatherData.clouds.all)%"
+        wheatherController.cloudsBlock.titleLabel.text = "  Облачность\n"
+        wheatherController.cloudsBlock.valueLabel.text = "  \(weatherData.clouds.all)%"
         
-        wheatherController.pressure.text = "  Давление\n"
-        wheatherController.pressureValue.text = "  \(weatherData.main.pressure) гПа"
+        wheatherController.pressureBlock.titleLabel.text = "  Давление\n"
+        wheatherController.pressureBlock.valueLabel.text = "  \(weatherData.main.pressure) гПа"
         
-        wheatherController.humidity.text = "  Влажность\n"
-        wheatherController.humidityValue.text = "  \(weatherData.main.humidity)%"
+        wheatherController.humidityBlock.titleLabel.text = "  Влажность\n"
+        wheatherController.humidityBlock.valueLabel.text = "  \(weatherData.main.humidity)%"
         
         let roundedFeelsTemp = Int(round(weatherData.main.feels_like))
-        wheatherController.feelsTemperature.text = "  Ощущается как\n"
-        wheatherController.feelsTemperatureValue.text = "  \(roundedFeelsTemp)°C"
+        wheatherController.feelsTemperatureBlock.titleLabel.text = "  Ощущается как\n"
+        wheatherController.feelsTemperatureBlock.valueLabel.text = "  \(roundedFeelsTemp)°C"
         
         let roundedSpeedWind = Int(round(weatherData.wind.speed))
-        wheatherController.speedWind.text = "  Скорость ветра\n"
-        wheatherController.speedWindValue.text = "  \(roundedSpeedWind) м/с"
+        wheatherController.speedWindBlock.titleLabel.text = "  Скорость ветра\n"
+        wheatherController.speedWindBlock.valueLabel.text = "  \(roundedSpeedWind) м/с"
         
         if let gust = weatherData.wind.gust {
             let roundedGustWind = Int(round(gust))
-            wheatherController.gustWind.text = "  Порыв ветра\n"
-            wheatherController.gustWindValue.text = "  \(roundedGustWind) м/с"
+            wheatherController.gustWindBlock.titleLabel.text = "  Порыв ветра\n"
+            wheatherController.gustWindBlock.valueLabel.text = "  \(roundedGustWind) м/с"
         } else {
-            wheatherController.gustWind.text = "  Порыв ветра\n"
-            wheatherController.gustWindValue.text = "  Н/Д" // Нет данных
+            wheatherController.gustWindBlock.titleLabel.text = "  Порыв ветра\n"
+            wheatherController.gustWindBlock.valueLabel.text = "  Н/Д" // Нет данных
         }
         
         let normTimeSunrise = convertData.convertUnixTimestampToReadableTime(unixTime: TimeInterval(weatherData.sys.sunrise))
-        wheatherController.timeSunrise.text = "  Время рассвета\n"
-        wheatherController.timeSunriseValue.text = "  \(normTimeSunrise)"
+        wheatherController.sunriseBlock.titleLabel.text = "  Время рассвета\n"
+        wheatherController.sunriseBlock.valueLabel.text = "  \(normTimeSunrise)"
         
         let normTimeSunset = convertData.convertUnixTimestampToReadableTime(unixTime: TimeInterval(weatherData.sys.sunset))
-        wheatherController.timeSunset.text = "  Время заката\n"
-        wheatherController.timeSunsetValue.text = "  \(normTimeSunset)"
+        wheatherController.sunsetBlock.titleLabel.text = "  Время заката\n"
+        wheatherController.sunsetBlock.valueLabel.text = "  \(normTimeSunset)"
         
         print("Данные для экрана добавлены/обновлены")
         
@@ -81,37 +81,37 @@ class UpdateUI {
         
         // Собираем данные в блоки на экране
         wheatherController.cloudsBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.clouds.text ?? "Нет данных")",
-            value: "\(wheatherController.cloudsValue.text ?? "Нет данных")",
+            title: "\(wheatherController.cloudsBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.cloudsBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Облачность"))
         
         wheatherController.pressureBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.pressure.text ?? "Нет данных")",
-            value: "\(wheatherController.pressureValue.text ?? "Нет данных")",
+            title: "\(wheatherController.pressureBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.pressureBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Давление"))
         wheatherController.humidityBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.humidity.text ?? "Нет данных")",
-            value: "\(wheatherController.humidityValue.text ?? "Нет данных")",
+            title: "\(wheatherController.humidityBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.humidityBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Влажность"))
         wheatherController.feelsTemperatureBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.feelsTemperature.text ?? "Нет данных")",
-            value: "\(wheatherController.feelsTemperatureValue.text ?? "Нет данных")",
+            title: "\(wheatherController.feelsTemperatureBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.feelsTemperatureBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Температура"))
         wheatherController.speedWindBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.speedWind.text ?? "Нет данных")",
-            value: "\(wheatherController.speedWindValue.text ?? "Нет данных")",
+            title: "\(wheatherController.speedWindBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.speedWindBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Скорость ветра"))
         wheatherController.gustWindBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.gustWind.text ?? "Нет данных")",
-            value: "\(wheatherController.gustWindValue.text ?? "Нет данных")",
+            title: "\(wheatherController.gustWindBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.gustWindBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Порыв ветра"))
         wheatherController.sunriseBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.timeSunrise.text ?? "Нет данных")",
-            value: "\(wheatherController.timeSunriseValue.text ?? "Нет данных")",
+            title: "\(wheatherController.sunriseBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.sunriseBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Восход"))
         wheatherController.sunsetBlock.addArrangedSubview(blocks.createWeatherBlock(
-            title: "\(wheatherController.timeSunset.text ?? "Нет данных")",
-            value: "\(wheatherController.timeSunsetValue.text ?? "Нет данных")",
+            title: "\(wheatherController.sunsetBlock.titleLabel.text ?? "Нет данных")",
+            value: "\(wheatherController.sunsetBlock.valueLabel.text ?? "Нет данных")",
             iconName: "Закат"))
         
     }
