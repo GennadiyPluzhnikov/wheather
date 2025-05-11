@@ -1,3 +1,5 @@
+// Файл с логикой поиска введенного города с погодой
+/*
 import Foundation
 import UIKit
 
@@ -57,3 +59,6 @@ class SearchCity {
         }
     }
 }
+
+*/
+

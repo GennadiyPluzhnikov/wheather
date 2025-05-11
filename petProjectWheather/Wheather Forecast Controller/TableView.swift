@@ -1,9 +1,11 @@
+// Логика построения таблицы с прогнозом
+
 import UIKit
 
 class TableView: UIViewController, UITableViewDataSource {
     
-    var forecast: ForecastWeatherAPI.ForecastResponse? = nil // Данные о прогнозе погоды
-    var forecastData: [ForecastWeatherAPI.ForecastDay] = [] // Массив данных для таблицы
+    var forecast: ForecastWeatherAPI.ForecastResponse?
+    var forecastData: [ForecastWeatherAPI.ForecastDay] = []
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -14,8 +16,8 @@ class TableView: UIViewController, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view.backgroundColor = .white
+        
         tableView.dataSource = self
         
         // Регистрируем кастомную ячейку
@@ -24,27 +26,19 @@ class TableView: UIViewController, UITableViewDataSource {
         // Добавляем таблицу на экран
         view.addSubview(tableView)
         
-        // Настройка layout с использованием SnapKit
+        // Настройка расположения таблицы
         tableView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        
-        // Если данные уже переданы, обновляем таблицу
-        if let forecast = forecast {
-            updateForecastData(forecast)
-            print("Данные получены и обновлены. Количество дней - \(forecastData.count)")
-        } else {
-            print("Данные не переданы")
-        }
     }
     
-    // MARK: - UITableViewDataSource
+    // MARK: - Настраиваем таблицу
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forecastData.count //
+        return forecastData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,9 +53,9 @@ class TableView: UIViewController, UITableViewDataSource {
         return cell
     }
     
-    // MARK: - Обновляем данные при открытии прогноза
+    // MARK: - Получаем данные при открытии экрана прогноза
     
-    func updateForecastData(_ forecast: ForecastWeatherAPI.ForecastResponse) {
+    func updateForecast(_ forecast: ForecastWeatherAPI.ForecastResponse) {
         self.forecast = forecast
         self.forecastData = forecast.forecast.forecastday
         tableView.reloadData()

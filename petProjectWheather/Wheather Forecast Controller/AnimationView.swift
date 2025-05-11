@@ -1,3 +1,5 @@
+// Анимация для кнопки
+
 import UIKit
 
 class AnimationView: UIView {
@@ -37,9 +39,9 @@ class AnimationView: UIView {
         
         // Создаем настройки для частиц
         let fireworkCell = CAEmitterCell()
-        fireworkCell.contents = UIImage(named: "confetti_image9")?.cgImage
-        fireworkCell.birthRate = 50
-        fireworkCell.lifetime = 4.0
+        fireworkCell.contents = UIImage(named: "Шашлык")?.cgImage
+        fireworkCell.birthRate = 5
+        fireworkCell.lifetime = 5.0
         fireworkCell.lifetimeRange = 1.5
         fireworkCell.velocity = 300
         fireworkCell.velocityRange = 200
@@ -58,9 +60,10 @@ class AnimationView: UIView {
     }
     
     func startFireworkAnimation() {
+        
         // Анимация хаотичного движения частиц
         let explosionAnimation = CAKeyframeAnimation(keyPath: "emitterCells.fireworkCell.birthRate")
-        explosionAnimation.values = [0, 200, 0]
+        explosionAnimation.values = [0, 50, 0]
         explosionAnimation.keyTimes = [0, 0.3, 1]
         explosionAnimation.duration = 1.5 // Анимация взрыва частиц
 
@@ -76,7 +79,7 @@ class AnimationView: UIView {
         
         // Запуск эмиттера частиц
         for cell in emitterLayer.emitterCells! {
-            cell.birthRate = 20 // Количество частиц для плавного эффекта
+            cell.birthRate = 10 // Количество частиц для плавного эффекта
         }
     }
 }

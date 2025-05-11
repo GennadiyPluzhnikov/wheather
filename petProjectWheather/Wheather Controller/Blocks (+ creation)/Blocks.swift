@@ -1,14 +1,7 @@
-//
-//  Blocks.swift
-//  petProjectWheather
-//
-//  Created by Геннадий on 24.02.2025.
-//
+// Шаблон и расположение блоков
 
 import Foundation
 import UIKit
-
-// MARK: - Устанавливаем расположение и адаптацию под различные экраны
 
 class Blocks {
     

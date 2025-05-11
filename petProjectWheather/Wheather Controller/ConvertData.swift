@@ -1,9 +1,4 @@
-//
-//  ConvertData.swift
-//  petProjectWheather
-//
-//  Created by Геннадий on 24.02.2025.
-//
+// Конвертация времени
 
 import Foundation
 

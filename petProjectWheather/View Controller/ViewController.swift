@@ -1,3 +1,5 @@
+// Стартоый экран приложения (Ввод города)
+
 import UIKit
 
 class ViewController: UIViewController {
@@ -24,7 +26,7 @@ class ViewController: UIViewController {
         return button
     }()
     
-    // Задаём хинт
+    // Задаём хинт с подсказкой
     private let textForExample: UILabel = {
         let text = UILabel()
         text.text = "For example, Moscow"
@@ -57,13 +59,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        // Проверка навигационного контроллера
-        if let navController = self.navigationController {
-            print("Навигационный контроллер есть! \(navController)")
-        } else {
-            print("Навигационного контроллера нет!")
-        }
-        
         // Добавляем элементы на экран
         view.addSubview(cityTextField)
         view.addSubview(getWheatherButton)
@@ -82,40 +77,42 @@ class ViewController: UIViewController {
     }
     
     // MARK: - Нажатие на кнопки поиска
+    
     @objc private func getWheatherTapped() {
-        print("Кнопку нажали")
+        print("Кнопка поиска погоды нажата")
         
         // Валидация поля города на пустоту
         guard let city = cityTextField.text, city.isEmpty == false else {
             let alert = SearchAlert()
             alert.showAlert(message: "Please enter the city")
-            print("Валидация не пройдена")
+            print("Валидация не пройдена, город не введён")
             return
         }
         
-        print("Валидация пройдена")
+        print("Валидация пройдена, город введён")
         
         // Получаем данные о погоде
         WheatherService().fetchWheather(for: city) { [weak self] response in
             DispatchQueue.main.async {
                 if let response = response {
-                    // После получения данных, переходим на второй экран
+                    
+                    // После получения данных передаём параметры города и погоды на следующий экран
                     let nextVC = WheatherController()
-                    nextVC.cityName = city // передаем город
-                    nextVC.wheather = response // передаем данные о погоде
+                    nextVC.cityName = city
+                    nextVC.wheather = response
                     
                     // Сохраняем город для будущих входов
                     UserDefaults.standard.set(city, forKey: "selectedCity")
                     print("City saved: \(city)")
                     
-                    // Переходим на экран погоды
+                    // Переходим на экран отображения текущей погоды
                     self?.navigationController?.pushViewController(nextVC, animated: true)
-                    print("Город найден, сохранен и на него перешли")
+                    print("Город найден, переход произошёл")
                     print("Передали данные: Город - \(city), Погода - \(String(describing: response))")
                 } else {
                     let alert = SearchAlert()
                     alert.showAlert(message: "City not found")
-                    print("Город не найден")
+                    print("Переход не произошёл, город не найден")
                 }
             }
         }
@@ -125,6 +122,7 @@ class ViewController: UIViewController {
     
     private func constraints() {
         NSLayoutConstraint.activate([
+            
             // Поле ввода города
             cityTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             cityTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
@@ -132,11 +130,11 @@ class ViewController: UIViewController {
             cityTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             cityTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            // Подсказка
+            // Хинт с подсказкой
             textForExample.leadingAnchor.constraint(equalTo: cityTextField.leadingAnchor),
             textForExample.topAnchor.constraint(equalTo: cityTextField.bottomAnchor, constant: 10),
             
-            // Кнопка
+            // Кнопка получения экрана и перехода
             getWheatherButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             getWheatherButton.topAnchor.constraint(equalTo: textForExample.bottomAnchor, constant: 20),
             getWheatherButton.widthAnchor.constraint(equalToConstant: 100),
