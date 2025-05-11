@@ -1,3 +1,5 @@
+// Скролл для обновления погоды
+
 import UIKit
 
 class ScrollRefreshHandler {

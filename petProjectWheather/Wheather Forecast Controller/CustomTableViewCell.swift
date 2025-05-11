@@ -1,3 +1,5 @@
+// Логика кастомизации ряда (ячейки)
+
 import Foundation
 import UIKit
 import SnapKit
@@ -52,14 +54,14 @@ class CustomTableViewCell: UITableViewCell {
        }
        
        private func setupUI() {
-           // Добавляем элементы на ячейку
+           // Добавляем элементы в ячейку
            contentView.addSubview(dateLabel)
            contentView.addSubview(weatherIcon)
            contentView.addSubview(minTempLabel)
            contentView.addSubview(progressBar)
            contentView.addSubview(maxTempLabel)
            
-           // Настройка constraints с использованием SnapKit
+           // Настройка расположения
            dateLabel.snp.makeConstraints { make in
                make.leading.equalToSuperview().offset(10)
                make.centerY.equalToSuperview()
@@ -90,11 +92,14 @@ class CustomTableViewCell: UITableViewCell {
            }
        }
        
-       // Метод для настройки ячейки данными
+       // Настройка данных для ячеек
        func configure(with forecastDay: ForecastWeatherAPI.ForecastDay) {
+           
+           // Изменяем формат даты
            let formattedDate = ConvertDate().formatDate(forecastDay.date)
            dateLabel.text = formattedDate
            
+           // Настраиваем прогресс бар для минимальной и максимальной температуры
            let forecastMinTempRounded = Int(forecastDay.day.mintempC)
            minTempLabel.text = "\(forecastMinTempRounded)°C"
            
@@ -107,7 +112,7 @@ class CustomTableViewCell: UITableViewCell {
            let deltaTemp = maxTemp - minTemp
            let maxPossibleTempDifference = 10.0 // Допустим, максимальная разница температур 10°C
            
-           // Нормализуем прогресс
+           // Нормализуем прогресс бар
            let progress = min(CGFloat(deltaTemp) / CGFloat(maxPossibleTempDifference), 1.0)
            progressBar.setProgress(Float(progress), animated: true)
            

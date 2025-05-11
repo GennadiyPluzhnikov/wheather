@@ -1,6 +1,7 @@
+// Конвертация даты в более читаемый формат
+
 import Foundation
 
-// MARK: - Конвертация даты в нормальный формат
 class ConvertDate {
     
     func formatDate(_ dateString: String) -> String {
@@ -29,7 +30,7 @@ class ConvertDate {
             return "Завтра"
         }
         
-        // Если это не сегодня и не завтра, форматируем дату в "1 марта"
+        // Если это не сегодня и не завтра, форматируем дату в фрмате "1 января"
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = "d MMMM"
         outputFormatter.locale = Locale(identifier: "ru_RU") // Устанавливаем локаль для русского языка

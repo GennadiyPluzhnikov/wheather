@@ -1,15 +1,7 @@
-//
-//  Alert.swift
-//  petProjectWheather
-//
-//  Created by Геннадий on 24.02.2025.
-//
+// Экран ошибки
 
 import Foundation
 import UIKit
-
-
-// MARK: - Параметры для экрана ошибки
 
 class Alert: UIViewController {
     func showAlert(message: String) {

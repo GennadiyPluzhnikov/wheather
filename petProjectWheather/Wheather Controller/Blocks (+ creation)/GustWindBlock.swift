@@ -1,6 +1,8 @@
+// Блок с порывом ветра
+
 import UIKit
 
-//  Задаём блок №6 (Порыв ветра)
+
 class GustWindBlock:UIStackView {
     
     // Заголовок порыва ветра

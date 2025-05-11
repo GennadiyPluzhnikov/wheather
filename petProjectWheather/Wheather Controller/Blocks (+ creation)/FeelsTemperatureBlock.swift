@@ -1,6 +1,8 @@
+// Блок с ощущением температуры
+
 import UIKit
 
-// Задаём блок №4 (Ощущение температуры)
+
 class FeelsTemperatureBlock: UIStackView {
         
     // Заголовок ощущения температуры

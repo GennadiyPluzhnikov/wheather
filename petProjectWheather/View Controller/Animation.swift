@@ -1,26 +1,20 @@
-//
-//  Animation.swift
-//  petProjectWheather
-//
-//  Created by Геннадий on 24.02.2025.
-//
+// Анимация для стартового экрана ввода города
 
 import Foundation
 import UIKit
 
-
-// MARK: - Функция для появления анимации заголовка и изображения планеты
 class Animation {
     
-    weak var view: ViewController?
+    var view: ViewController?
     
     init(view: ViewController? = nil) {
         self.view = view
     }
     
+    // Анимация текстового заголовка
     func animatePlanetLabel() {
         
-        let text = "Узнайте погоду в любой точке земли"
+        let text = "Find out the weather anywhere!"
         var charIndex = 0.0
         
         // Запускаем печатание текста
@@ -40,8 +34,9 @@ class Animation {
         }
     }
     
+    // Анимация появления картинки
     func fadeInPlanet() {
-        // Анимация для плавного появления
+        
         let fadeInImage = CABasicAnimation(keyPath: "opacity")
         fadeInImage.fromValue = 0  // Начальная прозрачность (невидимая)
         fadeInImage.toValue = 1    // Конечная прозрачность (полностью видимая)

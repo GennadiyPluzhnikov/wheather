@@ -1,6 +1,8 @@
+// Блок со скоростью ветра
+
 import UIKit
 
-//  Задаём блок №5 (Скорость ветра)
+
 class SpeedWindBlock: UIStackView {
     
     // Заголовок скорости ветра

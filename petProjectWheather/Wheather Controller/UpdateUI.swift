@@ -1,7 +1,8 @@
+// Обновление и добавление данных о погоде
+
 import Foundation
 import UIKit
 
-// MARK: - Обновляем/Добавляем данные на экране
 class UpdateUI {
     
     weak var wheatherController: WheatherController?

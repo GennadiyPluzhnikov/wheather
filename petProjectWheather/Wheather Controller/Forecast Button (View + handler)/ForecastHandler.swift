@@ -1,3 +1,5 @@
+// Получение данных о прогнозе погоды
+
 import UIKit
 
 class ForecastHandler {
@@ -19,7 +21,7 @@ class ForecastHandler {
     func handleForecastButtonTap() {
         guard let city = cityName else { return }
         
-        forecastService.fetchWeatherForecast(for: city, days: 5) { [weak self] (response: ForecastWeatherAPI.ForecastResponse?) in
+        forecastService.fetchWeatherForecast(for: city, days: 3) { [weak self] (response: ForecastWeatherAPI.ForecastResponse?) in
             DispatchQueue.main.async {
                 if let forecastData = response {
                     self?.showForecast(with: forecastData)
@@ -32,7 +34,7 @@ class ForecastHandler {
     
     private func showForecast(with data: ForecastWeatherAPI.ForecastResponse) {
         let forecastVC = WheatherControllerForecast()
-        forecastVC.forecastData = data
+        forecastVC.forecast = data
         viewController?.navigationController?.pushViewController(forecastVC, animated: true)
         print("Forecast data shown for city: \(data.location.name)")
     }

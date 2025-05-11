@@ -1,16 +1,15 @@
+// Экран прогноза погоды (на 3 дня)
+
 import UIKit
 import SnapKit
 
-
 class WheatherControllerForecast: UIViewController {
     
-    // Данные прогноза погоды
-    var forecastData: ForecastWeatherAPI.ForecastResponse? = nil
+    var forecast: ForecastWeatherAPI.ForecastResponse?
     
-    // Задаём поле для заголовка
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Прогноз на 5 дней"
+        label.text = "Прогноз на 3 дня"
         label.textAlignment = .left
         label.font = UIFont.systemFont(ofSize: 30)
         label.textColor = .black
@@ -18,11 +17,10 @@ class WheatherControllerForecast: UIViewController {
         return label
     }()
     
-    // Задаём кнопку
     private let happyButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(.white, for: .normal)
-        button.setTitle("Ура!", for: .normal)
+        button.setTitle("На шашлыки!", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18)
         button.backgroundColor = .blue.withAlphaComponent(0.85)
         button.layer.borderColor = UIColor.blue.withAlphaComponent(0.6).cgColor
@@ -37,76 +35,69 @@ class WheatherControllerForecast: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         
-        // Добавляем заголовок на экран
-        view.addSubview(titleLabel)
-        print("Заголовок добавлен на экран")
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
         
-        // Настраиваем расположение заголовка
+        // Добавляем заголовок
+        view.addSubview(titleLabel)
+        
+        let tableView = TableView()
+        
+        if let forecast = forecast {
+            tableView.updateForecast(forecast)
+        }
+        
+        // Добавляем таблицу
+        addChild(tableView)
+        view.addSubview(tableView.view)
+        tableView.didMove(toParent: self)
+        
+        // Добавляем кнопку
+        view.addSubview(happyButton)
+    }
+    
+    private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(120)
             make.left.equalToSuperview().offset(20)
         }
-        print("Ограничения для заголовка установлены")
         
-        // Создаём и настраиваем TableViewController
-        let tableView = TableView()
-        if let forecastData = forecastData {
-            tableView.updateForecastData(forecastData) // Обновляем данные
-        }
-        
-        // Добавляем TableViewController как дочерний
-        addChild(tableView)
-        view.addSubview(tableView.view)
-        tableView.didMove(toParent: self)
-        print("Таблица добавлена на экран")
-        
-        // Настраиваем ограничения для таблицы
+        guard let tableView = children.first as? TableView else { return } // Задание tableView и проверка наличия таблицы
         tableView.view.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.equalToSuperview().offset(5)
             make.right.equalToSuperview().offset(-5)
             make.bottom.equalToSuperview().offset(-20)
         }
-        print("Ограничения для таблицы установлены")
         
-        // Добавляем кнопку
-        view.addSubview(happyButton)
-        print("Кнопка добавлена на экран")
-        
-        // Настраиваем ограничения для кнопки
-        happyButton.snp.makeConstraints {make in
+        happyButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-85)
             make.centerX.equalToSuperview()
             make.width.equalTo(250)
             make.height.equalTo(40)
         }
     }
-    @objc func happyAnimation() {
-        // Создаем AnimationView с нулевым frame
+    
+    // Нажатие на кнопки с анимацией
+    @objc private func happyAnimation() {
         let confettiView = AnimationView(frame: .zero)
         confettiView.backgroundColor = .clear
         view.addSubview(confettiView)
         view.bringSubviewToFront(confettiView)
 
-        // Устанавливаем ограничения для confettiView, чтобы он занимал весь экран
         confettiView.snp.makeConstraints { make in
-            make.edges.equalToSuperview() // Растягиваем на весь экран
+            make.edges.equalToSuperview()
         }
 
-        // Убедимся, что представление правильно размещено перед началом анимации
         confettiView.setNeedsLayout()
         confettiView.layoutIfNeeded()
-
-        // Запускаем анимацию
         confettiView.startFireworkAnimation()
 
-        // Удаляем анимацию через 7 секунд
         DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
             confettiView.removeFromSuperview()
         }
     }
 }
-
-
-
-

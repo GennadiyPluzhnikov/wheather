@@ -37,7 +37,6 @@
 		F01E4F2A2D64FBE900FD21B4 /* API Forecast Wheather .swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E4F292D64FBE900FD21B4 /* API Forecast Wheather .swift */; };
 		F01E4F2C2D64FC6600FD21B4 /* WheatherController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E4F2B2D64FC6600FD21B4 /* WheatherController.swift */; };
 		F01E4F2E2D64FC8200FD21B4 /* WheatherForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E4F2D2D64FC8200FD21B4 /* WheatherForecastController.swift */; };
-		F038248B2D6CB0760074BC5F /* SearchCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038248A2D6CB0760074BC5F /* SearchCity.swift */; };
 		F081C9DD2D6C6E3F004B15F1 /* Import Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F081C9DC2D6C6E3F004B15F1 /* Import Data.swift */; };
 		F09687922D6C79B900173F13 /* UpdateUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09687912D6C79B900173F13 /* UpdateUI.swift */; };
 		F09687942D6C802E00173F13 /* BackgroundImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09687932D6C802E00173F13 /* BackgroundImage.swift */; };
@@ -126,7 +125,6 @@
 		F01E4F292D64FBE900FD21B4 /* API Forecast Wheather .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Forecast Wheather .swift"; sourceTree = "<group>"; };
 		F01E4F2B2D64FC6600FD21B4 /* WheatherController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherController.swift; sourceTree = "<group>"; };
 		F01E4F2D2D64FC8200FD21B4 /* WheatherForecastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheatherForecastController.swift; sourceTree = "<group>"; };
-		F038248A2D6CB0760074BC5F /* SearchCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCity.swift; sourceTree = "<group>"; };
 		F081C9DC2D6C6E3F004B15F1 /* Import Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Import Data.swift"; sourceTree = "<group>"; };
 		F09687912D6C79B900173F13 /* UpdateUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUI.swift; sourceTree = "<group>"; };
 		F09687932D6C802E00173F13 /* BackgroundImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImage.swift; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				6AF4D3F727717E4A75AE7C5C /* Pods-petProjectWheatherTests.debug.xcconfig */,
 				357894E4222AFCD103E3DB2E /* Pods-petProjectWheatherTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -244,9 +241,9 @@
 		F01E4EF22D64FA8800FD21B4 /* petProjectWheather */ = {
 			isa = PBXGroup;
 			children = (
-				F039C9AF2D74A4F2009211BA /* Wheather Forecast Controller */,
 				F096879D2D6C9E1100173F13 /* View Controller */,
 				F081C9DB2D6C6A96004B15F1 /* Wheather Controller */,
+				F039C9AF2D74A4F2009211BA /* Wheather Forecast Controller */,
 				F01E4F2F2D65132900FD21B4 /* API */,
 				F01E4F332D6513C100FD21B4 /* Application */,
 				F01E4EF92D64FA8800FD21B4 /* Main.storyboard */,
@@ -316,8 +313,8 @@
 				F01E4F2D2D64FC8200FD21B4 /* WheatherForecastController.swift */,
 				F0D966062D74BDF100F19D8C /* TableView.swift */,
 				F0D966082D7569CB00F19D8C /* CustomTableViewCell.swift */,
-				F0D9660B2D7570E700F19D8C /* ConvertDate.swift */,
 				F0AE6DDA2D773D6100451085 /* AnimationView.swift */,
+				F0D9660B2D7570E700F19D8C /* ConvertDate.swift */,
 			);
 			path = "Wheather Forecast Controller";
 			sourceTree = "<group>";
@@ -345,7 +342,6 @@
 			children = (
 				F01E4EF72D64FA8800FD21B4 /* ViewController.swift */,
 				F096879E2D6C9E5E00173F13 /* Animation.swift */,
-				F038248A2D6CB0760074BC5F /* SearchCity.swift */,
 				F09687A02D6CA66F00173F13 /* SearchAlert.swift */,
 			);
 			path = "View Controller";
@@ -565,7 +561,6 @@
 				F01E4F2C2D64FC6600FD21B4 /* WheatherController.swift in Sources */,
 				F081C9DD2D6C6E3F004B15F1 /* Import Data.swift in Sources */,
 				C35FD7292D934F1600D16B1E /* PressureBlock.swift in Sources */,
-				F038248B2D6CB0760074BC5F /* SearchCity.swift in Sources */,
 				C35FD7312D9354AA00D16B1E /* SpeedWindBlock.swift in Sources */,
 				F01E4F282D64FB8100FD21B4 /* API Current Wheather.swift in Sources */,
 				F09687A12D6CA66F00173F13 /* SearchAlert.swift in Sources */,

@@ -1,3 +1,5 @@
+// Кнопка смены города
+
 import UIKit
 
 class CityChangeHandler {

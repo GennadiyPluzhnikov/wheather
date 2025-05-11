@@ -1,6 +1,8 @@
+// Блок с данными о восходе
+
 import UIKit
 
-// Задаём блок №7 (Восход)
+
 class SunriseBlock:UIStackView {
     
     // Заголовок время восхода

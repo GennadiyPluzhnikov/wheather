@@ -1,3 +1,5 @@
+// Получение данных о погоде
+
 import Foundation
 
 class ImportData {

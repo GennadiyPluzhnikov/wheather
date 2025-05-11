@@ -1,6 +1,8 @@
+// Блок с атмосферным давлением
+
 import UIKit
 
-// Блок №2 (Давление)
+
 class PressureBlock: UIStackView {
     
     // Заголовок давления

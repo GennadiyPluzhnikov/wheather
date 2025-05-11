@@ -1,7 +1,10 @@
+// Основные параметры экрана (вне блоков)
+
 import UIKit
 
 
-final class MainLabels {
+class MainLabels {
+    
     // Поле для названия города
     let cityLabel: UILabel = {
         let label = UILabel()

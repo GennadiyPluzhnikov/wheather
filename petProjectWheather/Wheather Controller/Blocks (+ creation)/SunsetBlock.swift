@@ -1,6 +1,8 @@
+// Блок с данными о закате
+
 import UIKit
 
-// Задаём блок №8 (Закат)
+
 class SunsetBlock: UIStackView {
     
     // Заголовок время заката

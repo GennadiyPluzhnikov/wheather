@@ -1,3 +1,5 @@
+// Кнопка с прогнозом погоды
+
 import UIKit
 
 class ForecastButton: UIButton {

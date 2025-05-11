@@ -1,3 +1,5 @@
+// Экран текущей погоды
+
 import UIKit
 
 class WheatherController: UIViewController {

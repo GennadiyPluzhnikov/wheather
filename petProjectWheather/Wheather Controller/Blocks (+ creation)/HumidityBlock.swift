@@ -1,6 +1,8 @@
+// Блок с влажностью
+
 import UIKit
 
-// Блок №3 (Влажность)
+
 class HumidityBlock: UIStackView {
     
     // Заголовок влажности

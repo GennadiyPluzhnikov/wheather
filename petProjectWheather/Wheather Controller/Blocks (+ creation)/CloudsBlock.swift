@@ -1,6 +1,8 @@
+// Блок с облачностью
+
 import UIKit
 
-// Блок №1 (Влажность)
+
 class CloudsBlock: UIStackView {
     
     // Заголовок облачности
